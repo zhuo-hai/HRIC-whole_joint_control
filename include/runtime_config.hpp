@@ -65,7 +65,10 @@ struct ControllerParams {
     double inverse_q_weight = 0.0;
     double inverse_dq_weight = 0.0;
     EidMode eid_mode = EidMode::FullEid;
-    InputCompensationGainMode input_compensation_gain_mode = InputCompensationGainMode::Manual;
+    // Derive Ku from the discrete plant input matrix by default.  Set
+    // input_compensation_gain_mode: manual in a YAML file to retain explicit
+    // ku_q/ku_dq values for a legacy or gain-scan experiment.
+    InputCompensationGainMode input_compensation_gain_mode = InputCompensationGainMode::InputInverseEquivalent;
     double residual_eta_lambda = 1.0;
 };
 
